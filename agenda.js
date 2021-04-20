@@ -33,7 +33,7 @@ var myTeam = [{
 var randomBoolean = () => Math.random() > 0.5;
 console.log(randomBoolean())
 
-var loopArray = (team) => {
+var loopArray = team => {
     for (var i = 0; i < team.length; i++) {
         for (var j = 0; j < team[i].availability.length; j++) {
             team[i].availability[j] = randomBoolean();
@@ -55,3 +55,15 @@ loopArray(myTeam)
 showHourAndTeam(WORK_HOURS, myTeam);
 
 //2. Buscar hueco libre
+
+var searchFreeSpace = (team, space) => {
+    for (i = 0; i < space.length; i++) {
+        var check = true;
+        for (j = 0; j < team.length; j++) {
+            check = check && team[j].availability[i];
+        }
+        if (check) return "Hueco encontrado en el horario " + space[j]
+    }
+    return "Lo siento. No hay hueco disponible en el equipo."
+}
+console.log(searchFreeSpace(myTeam, WORK_HOURS))
